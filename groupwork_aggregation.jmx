@@ -1,0 +1,2645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1 r1853635">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan Latest" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="byteSize" elementType="Argument">
+            <stringProp name="Argument.name">byteSize</stringProp>
+            <stringProp name="Argument.value">aggregationservice-pearson-prep-us1-stg.bite.pearsondev.tech</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">1800</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Authorization" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;userName&quot;:&quot;groupworkstu01&quot;,&#xd;
+  &quot;password&quot;:&quot;Welc0me1&quot;&#xd;
+}&#xd;
+</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">int-piapi-internal.stg-openclass.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">tokens?useJwt=true</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager copy" enabled="false">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">eyJraWQiOiJrMTA2OTQ4MTkwIiwiYWxnIjoiUlM1MTIifQ.eyJzdWIiOiJmZmZmZmZmZjViOTBiMDg1ZTRiMDhjMTM5NTRiMTc0NyIsImhjYyI6IkxLIiwidHlwZSI6ImF0IiwiZXhwIjoxNTQ4MTc4MDI1LCJpYXQiOjE1NDgxNjcyMjQsInNlc3NpZCI6IjAwODJlNjM1LWI3MjYtNGU4Ny04YzM1LTQxZmM3NmQ3MDU4ZCJ9.cXjJtzJ2R_-dhDmGf7VIxJUXTXiTSlmB6Tw4ZURo5NWXT5AGNG8WfaGIz3RixlEuDrV9CHfSAYGcufRXMGLDNjBBsj2PwEMX-9Ddr-XDnPw3TMmiOkYGh7gITzjZnuwFrhZZw3rgH2igmqfWK7R3tYVgQYWy3p9wWs89mR__Hvw}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">Access_Token</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+            <boolProp name="JSONPostProcessor.compute_concat">true</boolProp>
+            <stringProp name="Sample.scope">all</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
+            <stringProp name="CounterConfig.start"></stringProp>
+            <stringProp name="CounterConfig.end"></stringProp>
+            <stringProp name="CounterConfig.incr"></stringProp>
+            <stringProp name="CounterConfig.name"></stringProp>
+            <stringProp name="CounterConfig.format"></stringProp>
+            <boolProp name="CounterConfig.per_user">false</boolProp>
+          </CounterConfig>
+          <hashTree/>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
+            <stringProp name="ConstantTimer.delay">7000</stringProp>
+          </ConstantTimer>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="projectcreatewithtemplate" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;courseId&quot;: &quot;1169333&quot;,&#xd;
+  &quot;platform&quot;: &quot;XL&quot;,&#xd;
+  &quot;templateId&quot;: &quot;5ac3249bd57de704d0acf34a&quot;,&#xd;
+  &quot;userId&quot;: &quot;ffffffff5bdb42e6fcdcc47a24e784a6&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/createByTemplate</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">ProjectID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.id</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="creategroupsforgivenproject" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">[&#xd;
+  {&#xd;
+    &quot;contextId&quot;: &quot;${ProjectID}&quot;,&#xd;
+    &quot;contextType&quot;: &quot;ASSIGNMENT&quot;,&#xd;
+    &quot;courseId&quot;: &quot;1169333&quot;,&#xd;
+    &quot;courseType&quot;: &quot;XL&quot;,&#xd;
+    &quot;groupingMode&quot;: &quot;MANUAL&quot;,&#xd;
+    &quot;id&quot;: null,&#xd;
+    &quot;modifiedBy&quot;: &quot;string&quot;,&#xd;
+    &quot;name&quot;: &quot;Sample Group 1&quot;,&#xd;
+    &quot;teamLeadId&quot;: &quot;ffffffff5bdb4427717dd179e2bbefbc&quot;,&#xd;
+    &quot;teamMemberIds&quot;: [&#xd;
+      &quot;ffffffff5beaeb50fcdcc451c3a35ac5&quot;,&#xd;
+	 &quot;ffffffff5bed5cd10fa68f5039a79dd6&quot;,&#xd;
+      &quot;ffffffff5bebf52762817d4bca8c3380&quot;,&#xd;
+      &quot;ffffffff5bdb4427717dd179e2bbefbc&quot;&#xd;
+    ],&#xd;
+    &quot;tenantId&quot;: &quot;gw&quot;,&#xd;
+    &quot;userId&quot;: &quot;ffffffff5bdb42e6fcdcc47a24e784a6&quot;&#xd;
+  }&#xd;
+]</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">groupingervice-pearson-gw-us1-dev.bite.pearsondev.tech</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v2/batch/groups</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="projectwithidwithgroups" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/5ca58cf01730470011dc797b/groups</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="projectwithidwithsettings" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/5ca5c96e7ed34d001249ad3f/settings</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="projectwithmilestones" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/${ProjectID}/milestones</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">RewiewStepID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">[3][&apos;reviewSteps&apos;][0][&apos;id&apos;]</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">MIlestoneID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">[0][&apos;id&apos;]</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="groupupdate" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;groupId&quot;: &quot;5caad25f50fcce0010b84afe&quot;,&#xd;
+  &quot;name&quot;: &quot;sample test&quot;,&#xd;
+  &quot;projectId&quot;: &quot;5caacc6e42a44a001146fee3&quot;,&#xd;
+  &quot;teamLead&quot;: {&#xd;
+    &quot;userId&quot;: &quot;ffffffff5bdb4427717dd179e2bbefbc&quot;,&#xd;
+    &quot;role&quot;: &quot;STUDENT&quot;,&#xd;
+    &quot;email&quot;: &quot;groupworkstu01@mailinator.com&quot;,&#xd;
+    &quot;firstName&quot;: &quot;Group&quot;,&#xd;
+    &quot;lastName&quot;: &quot;Work Stu&quot;,&#xd;
+    &quot;status&quot;: false,&#xd;
+    &quot;grouped&quot;: false&#xd;
+  },&#xd;
+  &quot;courseId&quot;: &quot;1169333&quot;,&#xd;
+  &quot;courseType&quot;: &quot;XL&quot;,&#xd;
+  &quot;teamMembers&quot;: [&#xd;
+    {&#xd;
+      &quot;userId&quot;: &quot;ffffffff5beaeb50fcdcc451c3a35ac5&quot;,&#xd;
+      &quot;role&quot;: &quot;STUDENT&quot;,&#xd;
+      &quot;email&quot;: &quot;groupworkstu02@mailinator.com&quot;,&#xd;
+      &quot;firstName&quot;: &quot;Group Work&quot;,&#xd;
+      &quot;lastName&quot;: &quot;Student 2&quot;,&#xd;
+      &quot;status&quot;: false,&#xd;
+      &quot;grouped&quot;: false&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;userId&quot;: &quot;ffffffff5bed5cd10fa68f5039a79dd6&quot;,&#xd;
+      &quot;role&quot;: &quot;STUDENT&quot;,&#xd;
+      &quot;email&quot;: &quot;groupworkstu04@mailinator.com&quot;,&#xd;
+      &quot;firstName&quot;: &quot;Groupwork&quot;,&#xd;
+      &quot;lastName&quot;: &quot;Student 4&quot;,&#xd;
+      &quot;status&quot;: false,&#xd;
+      &quot;grouped&quot;: false&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;userId&quot;: &quot;ffffffff5bebf52762817d4bca8c3380&quot;,&#xd;
+      &quot;role&quot;: &quot;STUDENT&quot;,&#xd;
+      &quot;email&quot;: &quot;groupworkstu01@mailinator.com&quot;,&#xd;
+      &quot;firstName&quot;: &quot;Groupwork&quot;,&#xd;
+      &quot;lastName&quot;: &quot;Student3&quot;,&#xd;
+      &quot;status&quot;: false,&#xd;
+      &quot;grouped&quot;: false&#xd;
+    },&#xd;
+    {&#xd;
+      &quot;userId&quot;: &quot;ffffffff5bdb4427717dd179e2bbefbc&quot;,&#xd;
+      &quot;role&quot;: &quot;STUDENT&quot;,&#xd;
+      &quot;email&quot;: &quot;groupworkstu01@mailinator.com&quot;,&#xd;
+      &quot;firstName&quot;: &quot;Group&quot;,&#xd;
+      &quot;lastName&quot;: &quot;Work Stu&quot;,&#xd;
+      &quot;status&quot;: false,&#xd;
+      &quot;grouped&quot;: false&#xd;
+    }&#xd;
+  ],&#xd;
+  &quot;groupingMode&quot;: &quot;MANUAL&quot;,&#xd;
+  &quot;userId&quot;: &quot;ffffffff5bdb42e6fcdcc47a24e784a6&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/groups/5caad25f50fcce0010b84afe</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="projectwithidupdate" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;id&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+  &quot;title&quot;: &quot;MATLAB Engineering Project: DMV Lines Four Part Project&quot;,&#xd;
+  &quot;assignmentOverview&quot;: &quot;&lt;p&gt;&lt;strong&gt;&lt;em&gt;Description and learning goals&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;:&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Your firm has been contacted by the Department of Motor Vehicles (DMV) to conduct an analysis of their current customer service performance and recommend changes that would benefit the service time of each customer. To perform the analysis, your team is provided with a list of arrivals to the DMV over the span of three days. Your team must determine the ideal arrangement of the DMV in order to guarantee the smallest average waiting time for each customer.&lt;/span&gt;&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&lt;strong&gt;&lt;em&gt;Instructions:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;You must conduct six analyses of different first come, first serve queuing schemes:&lt;/span&gt;&lt;/p&gt; &lt;ul&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Two lines, each capable of holding eight people;&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Four lines, each capable of holding four people;&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Eight lines, each capable of holding two people;&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Two lines, each separated by length of service time, holding eight people each;&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Four lines, each separated by length of service time, holding four people each;&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Eight lines, each separated by length of service time, holding two people each. &lt;/span&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;The best performing queuing scheme minimizes the average wait time of the customer and serves the most customers. We define wait time of a customer as the sum of the service times of the people in front of that customer when they first enter the line. Note that wait time does not include the customer&amp;rsquo;s own service time.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If the customer arrives at the DMV and every line is full, the time the customer waits for a line to open up must be included in the total waiting time for that customer. The DMV closes every day at 5:00 p.m., so any customers not yet in one of the queues will be &amp;ldquo;rejected.&amp;rdquo;&lt;/span&gt;&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;After selecting the best performing queuing scheme, design a system that can be used at the entrance of the DMV to &amp;ldquo;ticket&amp;rdquo; each customer.&lt;/span&gt;&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;In the service time separated queuing schemes your team will want to try different designs for finding the ideal separation criteria (e.g., all waiting times greater than five minutes go in line 1, everyone else in line 2). &lt;/span&gt;&lt;/p&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Successful teams will:&lt;/span&gt;&lt;/p&gt; &lt;ul&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Thoroughly address all topics listed in each Part of the project. &lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Clearly identify each team member&amp;rsquo;s responsibilities and contributions as an appendix to each presentation. &lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Correctly cite all sources for the presentations (both in-body and via Works Cited page).&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Utilize all team members in roughly equal amounts (both research and presentation delivery). &lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Complete Peer evaluations after Parts 2, 4 and 6. (All peer evaluations must be submitted before associated Parts are graded. Your instructor may reduce or increase an individual&amp;rsquo;s grade as a result of team feedback.) &lt;/span&gt;&lt;/li&gt; &lt;/ul&gt;&quot;,&#xd;
+  &quot;templateId&quot;: &quot;5ac3249bd57de704d0acf34a&quot;,&#xd;
+  &quot;learningObjectives&quot;: [&#xd;
+    &quot;&quot;&#xd;
+  ],&#xd;
+  &quot;startDate&quot;: &quot;2019-04-04T09:07:58.800+0000&quot;,&#xd;
+  &quot;projectStatus&quot;: &quot;INCOMPLETE&quot;,&#xd;
+  &quot;createdAt&quot;: &quot;2019-04-04T09:07:58.868+0000&quot;,&#xd;
+  &quot;updatedAt&quot;: &quot;2019-04-04T09:07:58.868+0000&quot;,&#xd;
+  &quot;template&quot;: false,&#xd;
+  &quot;platform&quot;: &quot;XL&quot;,&#xd;
+  &quot;points&quot;: &quot;100&quot;,&#xd;
+  &quot;courseId&quot;: &quot;1169333&quot;,&#xd;
+  &quot;userId&quot;: &quot;ffffffff5bdb42e6fcdcc47a24e784a6&quot;,&#xd;
+  &quot;supportDocuments&quot;: [],&#xd;
+  &quot;_links&quot;: {&#xd;
+    &quot;self&quot;: {&#xd;
+      &quot;href&quot;: &quot;http://groupwork-aggregation.dev-prsn.com/api/v1/projects/5ca6f6c15065490011f36776&quot;&#xd;
+    }&#xd;
+  }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/5ca6f6c15065490011f36776</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="projectwithid" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/5c416c8f7eba3328431b483a</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="milestoneupdateall" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">[&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f36777&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #1: Project/team organization and project planning&quot;,&#xd;
+    &quot;description&quot;: &quot;&lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Complete team formation contract, a single-sheet document signed by all members (electronic signatures are fine if agreed by all). Contract contents include:&lt;/span&gt;&lt;/p&gt; &lt;ol&gt; &lt;ol&gt; &lt;ol style=\&quot;list-style-type: lower-roman;\&quot;&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Team Name&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Team Mission Statement&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Team Motto&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Expectations for team member behavior (norms)&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Plans and expectations for team communication, including list of tools team will use to communicate as well as how members will create, share and edit documents (e.g., Google hangouts, Skype, Google drive, text message, Facebook group, Blackboard, Moodle or other LMS tools, etc.)&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Description of how rule violations will be handled and consequences&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;State how the team will recognize outstanding performance&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Date and sign document (electronically with permission of team member)&lt;/span&gt;&lt;/li&gt; &lt;/ol&gt; &lt;/ol&gt; &lt;/ol&gt;&quot;,&#xd;
+    &quot;type&quot;: &quot;MILESTONE&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.240+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 1,&#xd;
+    &quot;parentId&quot;: &quot;5c19e3dfd05f03000fc18926&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f36778&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #2: Project Website or Individual Documents&quot;,&#xd;
+    &quot;description&quot;: &quot;&lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Each team must develop and maintain a project website or individual documents that contain:&lt;/span&gt;&lt;/p&gt; &lt;ul&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;A &amp;ldquo;home&amp;rdquo; page:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; includes a short blurb about the project.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;Project definition:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; a description of your project and the charge your team must accomplish.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;Team information:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; an introduction of each team member (personal) and description of their role within your team (professional).&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;To do list: &lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;a continually updated list that includes an owner, description of the item, due date, and status of whether that item is complete or incomplete.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;&amp;ldquo;Daily&amp;rdquo; updates:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; a &amp;ldquo;blog&amp;rdquo; update posted (M, W, F) by ONE member of the team that documents the events of meetings, who, what, and when every item on the &amp;ldquo;to do&amp;rdquo; list is being developed.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;Weekly updates:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; a &amp;ldquo;blog&amp;rdquo; update of the big picture of your project development. &lt;/span&gt;&lt;strong&gt;These should be INDIVIDUALLY posted by EVERY member of the team by Fridays at 5:00 p.m. &lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Each team member is required to post a weekly update answering the following questions:&lt;/span&gt;&lt;/li&gt; &lt;ol style=\&quot;list-style-type: lower-alpha;\&quot;&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;What were the major accomplishments for your team last week?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;What does your team plan to accomplish by this Friday?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;What were the &amp;ldquo;road bumps&amp;rdquo; encountered by your team last week and how did you solve these problems?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;What problems do you anticipate this week?&lt;/span&gt;&lt;/li&gt; &lt;/ol&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;Calendar:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; an embedded calendar of relevant due dates for the project, to-do items, and group meetings. &lt;/span&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If creating a website, each team may use the Google Site Project template or develop your own page from scratch. The site must be secure (only your team + your instructor should have access to your project site) and editable by any member of your team. This security is built in to Google Sites, but you are free to explore alternatives. For more information on how to set up, use, or share Google Sites or use Templates with Google Sites, please refer to the following link: http://sites.google.com/site/projectwikitemplate_en/. &lt;/span&gt;&lt;/p&gt;&quot;,&#xd;
+    &quot;type&quot;: &quot;MILESTONE&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.759+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.241+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 2,&#xd;
+    &quot;parentId&quot;: &quot;5c19e3dfd05f03000fc18927&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f36779&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #4: Code&quot;,&#xd;
+    &quot;description&quot;: &quot;&lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Save each queuing scenario as a separate file with the following naming scheme: &lt;/span&gt;&lt;/p&gt; &lt;ul&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Two lines, each capable of holding eight people&amp;mdash;Save as Lines2_8_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Four lines, each capable of holding four people&amp;mdash;Save as Lines4_4_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Eight lines, each capable of holding two people&amp;mdash;Save as Lines8_2_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Two lines, each separated by service time&amp;mdash;Save as SLines2_8_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Four lines, each separated by service time&amp;mdash;Save as SLines4_4_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Eight lines, each separated by service time&amp;mdash;Save as SLines8_2_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Ticketing system&amp;mdash;Save as Ticketing_TEAM.m &lt;/span&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;where TEAM is your team identifier as assigned by your instructor. &lt;/span&gt;&lt;/p&gt;&quot;,&#xd;
+    &quot;type&quot;: &quot;MILESTONE&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.760+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.243+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 4,&#xd;
+    &quot;parentId&quot;: &quot;5c19e3dfd05f03000fc18928&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f3677a&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #3: Peer Review&quot;,&#xd;
+    &quot;type&quot;: &quot;REVIEW&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.761+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.237+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 3,&#xd;
+    &quot;parentId&quot;: &quot;5c19e3dfd05f03000fc18929&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;reviewSteps&quot;: [&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c15065490011f3677e&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677a&quot;,&#xd;
+        &quot;title&quot;: &quot;Team member has contributed to the team&apos;s work equally and in a timely manner.&quot;,&#xd;
+        &quot;orderId&quot;: 1&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c15065490011f3677f&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677a&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to positive interactions with teammates&quot;,&#xd;
+        &quot;orderId&quot;: 2&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c15065490011f36780&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677a&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the quality of the team project.&quot;,&#xd;
+        &quot;orderId&quot;: 3&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c15065490011f36781&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677a&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the management of team conflict during the course of the project.&quot;,&#xd;
+        &quot;orderId&quot;: 4&#xd;
+      }&#xd;
+    ],&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f3677b&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #5: Peer Review&quot;,&#xd;
+    &quot;type&quot;: &quot;REVIEW&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.763+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.238+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 5,&#xd;
+    &quot;parentId&quot;: &quot;5c2dad9846fe931ee0acdf6f&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;reviewSteps&quot;: [&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36782&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677b&quot;,&#xd;
+        &quot;title&quot;: &quot;Team member has contributed to the team&apos;s work equally and in a timely manner.&quot;,&#xd;
+        &quot;orderId&quot;: 1&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36783&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677b&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to positive interactions with teammates&quot;,&#xd;
+        &quot;orderId&quot;: 2&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36784&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677b&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the quality of the team project.&quot;,&#xd;
+        &quot;orderId&quot;: 3&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36785&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677b&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the management of team conflict during the course of the project.&quot;,&#xd;
+        &quot;orderId&quot;: 4&#xd;
+      }&#xd;
+    ],&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f3677c&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #6: Written Section&quot;,&#xd;
+    &quot;description&quot;: &quot;&lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Each team must submit a final written communication, including the following components:&lt;/span&gt;&lt;/p&gt; &lt;ul&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;A summary of the project, procedure, and results.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Discussion of the algorithm designed to separate appointments based on service time.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Discussion of determination of the most efficient queuing scheme.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Discussion and a graph (as a proper plot) to illustrate the relationship between the number of lines and the average waiting time.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Discussion and a graph (as a proper plot) to illustrate the relationship between the different queuing schemes and the average waiting time. &lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Questions answered:&lt;/span&gt;&lt;/li&gt; &lt;ol style=\&quot;list-style-type: lower-alpha;\&quot;&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If it were necessary to make budget cuts, which queuing scheme would be best to ensure that each line is fully utilized, while providing a small waiting time to the customer?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If we double the length of each line (in Lines2_8, Lines4_4, and Lines8_2) but retain the original number of lines, would the average waiting time increase, decrease, or stay the same?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If we double the length of each line (in SLines2_8, SLines4_4, and SLines8_2) but retain the original number of lines, would the average waiting time increase, decrease, or stay the same?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If we double the number of lines (in Lines2_8, Lines4_4, and Lines8_2) but retain the original line capacity, would the average waiting time increase, decrease, or stay the same?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If we double the number of lines (in ServiceLines2_8, ServiceLines4_4, and ServiceLines8_2) but retain the original line capacity, would the average waiting time increase, decrease, or stay the same?&lt;/span&gt;&lt;/li&gt; &lt;/ol&gt; &lt;/ul&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;For the submission format, each team may choose or may be assigned by your instructor one of the following options. The written portion will be graded on neatness, organization, spelling/grammar/mechanics, formatting of embedded graphs, and strength of conclusions.&lt;/span&gt;&lt;/p&gt;&quot;,&#xd;
+    &quot;type&quot;: &quot;MILESTONE&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.764+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.319+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 6,&#xd;
+    &quot;parentId&quot;: &quot;5c2db06e46fe931ee0acdf74&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f3677d&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #7: Peer Review&quot;,&#xd;
+    &quot;type&quot;: &quot;REVIEW&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.765+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.235+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 7,&#xd;
+    &quot;parentId&quot;: &quot;5c2db10746fe931ee0acdf75&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;reviewSteps&quot;: [&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36786&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677d&quot;,&#xd;
+        &quot;title&quot;: &quot;Team member has contributed to the team&apos;s work equally and in a timely manner.&quot;,&#xd;
+        &quot;orderId&quot;: 1&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36787&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677d&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to positive interactions with teammates&quot;,&#xd;
+        &quot;orderId&quot;: 2&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36788&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677d&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the quality of the team project.&quot;,&#xd;
+        &quot;orderId&quot;: 3&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36789&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677d&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the management of team conflict during the course of the project.&quot;,&#xd;
+        &quot;orderId&quot;: 4&#xd;
+      }&#xd;
+    ],&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  }&#xd;
+]</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/milestones</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="milestonesave" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">[&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f36777&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #1: Project/team organization and project planning&quot;,&#xd;
+    &quot;description&quot;: &quot;&lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Complete team formation contract, a single-sheet document signed by all members (electronic signatures are fine if agreed by all). Contract contents include:&lt;/span&gt;&lt;/p&gt; &lt;ol&gt; &lt;ol&gt; &lt;ol style=\&quot;list-style-type: lower-roman;\&quot;&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Team Name&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Team Mission Statement&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Team Motto&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Expectations for team member behavior (norms)&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Plans and expectations for team communication, including list of tools team will use to communicate as well as how members will create, share and edit documents (e.g., Google hangouts, Skype, Google drive, text message, Facebook group, Blackboard, Moodle or other LMS tools, etc.)&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Description of how rule violations will be handled and consequences&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;State how the team will recognize outstanding performance&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Date and sign document (electronically with permission of team member)&lt;/span&gt;&lt;/li&gt; &lt;/ol&gt; &lt;/ol&gt; &lt;/ol&gt;&quot;,&#xd;
+    &quot;type&quot;: &quot;MILESTONE&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.240+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 1,&#xd;
+    &quot;parentId&quot;: &quot;5c19e3dfd05f03000fc18926&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f36778&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #2: Project Website or Individual Documents&quot;,&#xd;
+    &quot;description&quot;: &quot;&lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Each team must develop and maintain a project website or individual documents that contain:&lt;/span&gt;&lt;/p&gt; &lt;ul&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;A &amp;ldquo;home&amp;rdquo; page:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; includes a short blurb about the project.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;Project definition:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; a description of your project and the charge your team must accomplish.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;Team information:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; an introduction of each team member (personal) and description of their role within your team (professional).&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;To do list: &lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;a continually updated list that includes an owner, description of the item, due date, and status of whether that item is complete or incomplete.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;&amp;ldquo;Daily&amp;rdquo; updates:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; a &amp;ldquo;blog&amp;rdquo; update posted (M, W, F) by ONE member of the team that documents the events of meetings, who, what, and when every item on the &amp;ldquo;to do&amp;rdquo; list is being developed.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;Weekly updates:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; a &amp;ldquo;blog&amp;rdquo; update of the big picture of your project development. &lt;/span&gt;&lt;strong&gt;These should be INDIVIDUALLY posted by EVERY member of the team by Fridays at 5:00 p.m. &lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Each team member is required to post a weekly update answering the following questions:&lt;/span&gt;&lt;/li&gt; &lt;ol style=\&quot;list-style-type: lower-alpha;\&quot;&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;What were the major accomplishments for your team last week?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;What does your team plan to accomplish by this Friday?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;What were the &amp;ldquo;road bumps&amp;rdquo; encountered by your team last week and how did you solve these problems?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;What problems do you anticipate this week?&lt;/span&gt;&lt;/li&gt; &lt;/ol&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;strong&gt;Calendar:&lt;/strong&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt; an embedded calendar of relevant due dates for the project, to-do items, and group meetings. &lt;/span&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If creating a website, each team may use the Google Site Project template or develop your own page from scratch. The site must be secure (only your team + your instructor should have access to your project site) and editable by any member of your team. This security is built in to Google Sites, but you are free to explore alternatives. For more information on how to set up, use, or share Google Sites or use Templates with Google Sites, please refer to the following link: http://sites.google.com/site/projectwikitemplate_en/. &lt;/span&gt;&lt;/p&gt;&quot;,&#xd;
+    &quot;type&quot;: &quot;MILESTONE&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.759+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.241+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 2,&#xd;
+    &quot;parentId&quot;: &quot;5c19e3dfd05f03000fc18927&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f36779&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #4: Code&quot;,&#xd;
+    &quot;description&quot;: &quot;&lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Save each queuing scenario as a separate file with the following naming scheme: &lt;/span&gt;&lt;/p&gt; &lt;ul&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Two lines, each capable of holding eight people&amp;mdash;Save as Lines2_8_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Four lines, each capable of holding four people&amp;mdash;Save as Lines4_4_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Eight lines, each capable of holding two people&amp;mdash;Save as Lines8_2_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Two lines, each separated by service time&amp;mdash;Save as SLines2_8_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Four lines, each separated by service time&amp;mdash;Save as SLines4_4_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Eight lines, each separated by service time&amp;mdash;Save as SLines8_2_TEAM.m&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Ticketing system&amp;mdash;Save as Ticketing_TEAM.m &lt;/span&gt;&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;where TEAM is your team identifier as assigned by your instructor. &lt;/span&gt;&lt;/p&gt;&quot;,&#xd;
+    &quot;type&quot;: &quot;MILESTONE&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.760+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.243+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 4,&#xd;
+    &quot;parentId&quot;: &quot;5c19e3dfd05f03000fc18928&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f3677a&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #3: Peer Review&quot;,&#xd;
+    &quot;type&quot;: &quot;REVIEW&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.761+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.237+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 3,&#xd;
+    &quot;parentId&quot;: &quot;5c19e3dfd05f03000fc18929&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;reviewSteps&quot;: [&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c15065490011f3677e&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677a&quot;,&#xd;
+        &quot;title&quot;: &quot;Team member has contributed to the team&apos;s work equally and in a timely manner.&quot;,&#xd;
+        &quot;orderId&quot;: 1&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c15065490011f3677f&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677a&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to positive interactions with teammates&quot;,&#xd;
+        &quot;orderId&quot;: 2&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c15065490011f36780&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677a&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the quality of the team project.&quot;,&#xd;
+        &quot;orderId&quot;: 3&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c15065490011f36781&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677a&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the management of team conflict during the course of the project.&quot;,&#xd;
+        &quot;orderId&quot;: 4&#xd;
+      }&#xd;
+    ],&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f3677b&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #5: Peer Review&quot;,&#xd;
+    &quot;type&quot;: &quot;REVIEW&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.763+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.238+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 5,&#xd;
+    &quot;parentId&quot;: &quot;5c2dad9846fe931ee0acdf6f&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;reviewSteps&quot;: [&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36782&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677b&quot;,&#xd;
+        &quot;title&quot;: &quot;Team member has contributed to the team&apos;s work equally and in a timely manner.&quot;,&#xd;
+        &quot;orderId&quot;: 1&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36783&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677b&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to positive interactions with teammates&quot;,&#xd;
+        &quot;orderId&quot;: 2&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36784&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677b&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the quality of the team project.&quot;,&#xd;
+        &quot;orderId&quot;: 3&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36785&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677b&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the management of team conflict during the course of the project.&quot;,&#xd;
+        &quot;orderId&quot;: 4&#xd;
+      }&#xd;
+    ],&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f3677c&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #6: Written Section&quot;,&#xd;
+    &quot;description&quot;: &quot;&lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Each team must submit a final written communication, including the following components:&lt;/span&gt;&lt;/p&gt; &lt;ul&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;A summary of the project, procedure, and results.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Discussion of the algorithm designed to separate appointments based on service time.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Discussion of determination of the most efficient queuing scheme.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Discussion and a graph (as a proper plot) to illustrate the relationship between the number of lines and the average waiting time.&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Discussion and a graph (as a proper plot) to illustrate the relationship between the different queuing schemes and the average waiting time. &lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;Questions answered:&lt;/span&gt;&lt;/li&gt; &lt;ol style=\&quot;list-style-type: lower-alpha;\&quot;&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If it were necessary to make budget cuts, which queuing scheme would be best to ensure that each line is fully utilized, while providing a small waiting time to the customer?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If we double the length of each line (in Lines2_8, Lines4_4, and Lines8_2) but retain the original number of lines, would the average waiting time increase, decrease, or stay the same?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If we double the length of each line (in SLines2_8, SLines4_4, and SLines8_2) but retain the original number of lines, would the average waiting time increase, decrease, or stay the same?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If we double the number of lines (in Lines2_8, Lines4_4, and Lines8_2) but retain the original line capacity, would the average waiting time increase, decrease, or stay the same?&lt;/span&gt;&lt;/li&gt; &lt;li style=\&quot;font-weight: 400;\&quot;&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;If we double the number of lines (in ServiceLines2_8, ServiceLines4_4, and ServiceLines8_2) but retain the original line capacity, would the average waiting time increase, decrease, or stay the same?&lt;/span&gt;&lt;/li&gt; &lt;/ol&gt; &lt;/ul&gt; &lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt;&lt;span style=\&quot;font-weight: 400;\&quot;&gt;For the submission format, each team may choose or may be assigned by your instructor one of the following options. The written portion will be graded on neatness, organization, spelling/grammar/mechanics, formatting of embedded graphs, and strength of conclusions.&lt;/span&gt;&lt;/p&gt;&quot;,&#xd;
+    &quot;type&quot;: &quot;MILESTONE&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.764+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.319+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 6,&#xd;
+    &quot;parentId&quot;: &quot;5c2db06e46fe931ee0acdf74&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  },&#xd;
+  {&#xd;
+    &quot;id&quot;: &quot;5ca6f6c15065490011f3677d&quot;,&#xd;
+    &quot;projectId&quot;: &quot;5ca6f6c15065490011f36776&quot;,&#xd;
+    &quot;title&quot;: &quot;Milestone #7: Peer Review&quot;,&#xd;
+    &quot;type&quot;: &quot;REVIEW&quot;,&#xd;
+    &quot;createdAt&quot;: &quot;2019-04-05T06:33:37.765+0000&quot;,&#xd;
+    &quot;updatedAt&quot;: &quot;2019-04-05T09:27:42.235+0000&quot;,&#xd;
+    &quot;startDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;endDate&quot;: &quot;2019-04-05T06:33:37.756+0000&quot;,&#xd;
+    &quot;orderId&quot;: 7,&#xd;
+    &quot;parentId&quot;: &quot;5c2db10746fe931ee0acdf75&quot;,&#xd;
+    &quot;status&quot;: null,&#xd;
+    &quot;reviewSteps&quot;: [&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36786&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677d&quot;,&#xd;
+        &quot;title&quot;: &quot;Team member has contributed to the team&apos;s work equally and in a timely manner.&quot;,&#xd;
+        &quot;orderId&quot;: 1&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36787&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677d&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to positive interactions with teammates&quot;,&#xd;
+        &quot;orderId&quot;: 2&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36788&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677d&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the quality of the team project.&quot;,&#xd;
+        &quot;orderId&quot;: 3&#xd;
+      },&#xd;
+      {&#xd;
+        &quot;id&quot;: &quot;5ca6f6c25065490011f36789&quot;,&#xd;
+        &quot;milestoneId&quot;: &quot;5ca6f6c15065490011f3677d&quot;,&#xd;
+        &quot;title&quot;: &quot;The team member has contributed to the management of team conflict during the course of the project.&quot;,&#xd;
+        &quot;orderId&quot;: 4&#xd;
+      }&#xd;
+    ],&#xd;
+    &quot;supportDocuments&quot;: []&#xd;
+  }&#xd;
+]</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/milestones/save</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="milestonescomments" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/milestones/5ca6e62d648adf0012759ca5/groups/5ca6e69a856d3000112e1f72/comments</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="course" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/courses/1169333/users/ffffffff5c45aacc52faff00756cb83d</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="groupgradesstatus" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/groups/5ca5978a4f69be0010bd480a/grades/status</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="groupgrades" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/groups/5ca6f77c50fcce0010b8491c/grades</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="availability" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;courseId&quot;: &quot;1169333&quot;,&#xd;
+  &quot;userIds&quot;: [&#xd;
+    &quot;ffffffff5bdb4427717dd179e2bbefbc&quot;&#xd;
+  ]&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/availability</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="group" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/groups/5ca5978a4f69be0010bd480a</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="projects" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="submit_content" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;content&quot;: &quot;12345&quot;,&#xd;
+  &quot;contentType&quot;: &quot;FILE&quot;,&#xd;
+  &quot;contextId&quot;: &quot;5ca5c96f7ed34d001249ad40&quot;,&#xd;
+  &quot;contextType&quot;: &quot;MILESTONE&quot;,&#xd;
+  &quot;projectId&quot;: &quot;5ca5c96e7ed34d001249ad3f&quot;,&#xd;
+  &quot;userId&quot;: &quot;ffffffff5bed5cd10fa68f5039a79dd6&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/submissions/content</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="projectsubmissions" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/5c3c6a85deb72b0010142bb5/submissions</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="projectprogress" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/5ca6f6c15065490011f36776/progress</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="getmilestoneStatus" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/${ProjectID}/milestoneStatus</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="downloadprojectsubmissions" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/5c3c6a85deb72b0010142bb5/attachments/5c750d637eba330f69037455/download</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="milestoneattachmentdownload" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/milestones/5b7fa384a251c100016a06c9/attachments/5c760dae7eba3317278f03c9/download</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="submission_download" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/submissions/5c459e907eba33187c13089d/download</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="comments" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;commentsDTOS&quot;: [&#xd;
+    {&#xd;
+      &quot;content&quot;: &quot;This is comment for review step testing123&quot;,&#xd;
+      &quot;contextId&quot;: &quot;${RewiewStepID}&quot;,&#xd;
+      &quot;contextType&quot;: &quot;REVIEW_STEP&quot;&#xd;
+    }&#xd;
+  ],&#xd;
+  &quot;projectId&quot;: &quot;${ProjectID}&quot;,&#xd;
+  &quot;userId&quot;: &quot;ffffffff5bed5cd10fa68f5039a79dd6&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/v1/comments</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="grades" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;grades&quot;: [&#xd;
+    {&#xd;
+      &quot;contextId&quot;: &quot;${RewiewStepID}&quot;,&#xd;
+      &quot;contextType&quot;: &quot;REVIEW_STEP&quot;,&#xd;
+      &quot;points&quot;: 5,&#xd;
+      &quot;targetUser&quot;: &quot;ffffffff5bed5cd10fa68f5039a79dd6&quot;&#xd;
+    }&#xd;
+  ],&#xd;
+  &quot;projectId&quot;: &quot;${ProjectID}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/grades</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="projectattachments" enabled="true">
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="/home/user/Downloads/download.jpeg" elementType="HTTPFileArg">
+                <stringProp name="File.path">/home/user/Downloads/download.jpeg</stringProp>
+                <stringProp name="File.paramname">file</stringProp>
+                <stringProp name="File.mimetype">image/jpeg</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="userId" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">ffffffff5bdb42e6fcdcc47a24e784a6</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">userId</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/${ProjectID}/attachments</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">AttachmentID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">[&apos;attachmentId&apos;]</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="milestonecheckSubmission" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/milestones/5cb032e67eba3319de2c7e63/submit</stringProp>
+          <stringProp name="HTTPSampler.method">PUT</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="milestoneupload" enabled="true">
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="/home/user/Downloads/download.jpeg" elementType="HTTPFileArg">
+                <stringProp name="File.path">/home/user/Downloads/download.jpeg</stringProp>
+                <stringProp name="File.paramname">file</stringProp>
+                <stringProp name="File.mimetype">image/jpeg</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/milestones/${MIlestoneID}/attachments</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">MIlestoneAttachmentID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">[&apos;attachmentId&apos;]</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="getSubmissions" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/submissions?contextId=5b7fa384a251c100016a06c9&amp;contextType=MILESTONE</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49586">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="submit_resource" enabled="true">
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="/home/user/Downloads/download.jpeg" elementType="HTTPFileArg">
+                <stringProp name="File.path">/home/user/Downloads/download.jpeg</stringProp>
+                <stringProp name="File.paramname">file</stringProp>
+                <stringProp name="File.mimetype">image/jpeg</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/submissions/resource?projectId=${ProjectID}&amp;contextId=${RewiewStepID}&amp;userId=ffffffff5bdb4427717dd179e2bbefbc&amp;contextType=REVIEW_STEP</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49587">201</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">SubmissionAttachmentID</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">[&apos;submissionId&apos;]</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="deleteattachmentsproject" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/projects/${ProjectID}/attachments/${AttachmentID}/?userId=ffffffff5bdb42e6fcdcc47a24e784a6</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49590">204</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="deleteattachmentsmilestone" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/milestones/${MIlestoneID}/attachments/${MIlestoneAttachmentID}</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49590">204</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="deletetesubmissionattachment" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/submissions/${SubmissionAttachmentID}</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-Authorization</stringProp>
+                <stringProp name="Header.value">${Access_Token}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">correlation-id</stringProp>
+                <stringProp name="Header.value">1234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">x-tenantId</stringProp>
+                <stringProp name="Header.value">gw</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="49590">204</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Response Time Graph" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">/home/heshan/Desktop/initialWebReleasePerf/perf_results.csv</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">/home/heshan/Desktop/Perf web/test1.jmx</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <Summariser guiclass="SummariserGui" testclass="Summariser" testname="Generate Summary Results" enabled="true"/>
+        <hashTree/>
+        <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
